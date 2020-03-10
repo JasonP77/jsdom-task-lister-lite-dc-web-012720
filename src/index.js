@@ -8,9 +8,12 @@ function createTodo(e) {
   e.preventDefault();
   let ul = getUl();
   let li = createLi();
-  ul.appendChild(li);
   let input = document.querySelector(".input_field").value;
   li.innerText = input;
+  let button = createButton();
+  ul.appendChild(li);
+  li.appendChild(button);
+  e.target.reset()
 }
 
 function getUl(){
@@ -22,3 +25,15 @@ function createLi(){
   return li
 }
 
+function createButton() {
+  let button = document.createElement("button")
+  button.innerText = "Delete"
+  button.addEventListener('click', deleteItem)
+  return button 
+}
+
+function deleteItem(e) {
+  e.preventDefault()
+  let selection = e.target.parentElement 
+  selection.remove() 
+}
